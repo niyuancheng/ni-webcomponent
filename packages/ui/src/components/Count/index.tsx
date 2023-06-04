@@ -25,7 +25,7 @@ class Count extends NiComponent {
         return (
             <div>
                 <div>{this.count}</div>
-                <button class={this.type}>{this.type} -- 点击+1</button>
+                <button class={this.type} onClick={this.click}>{this.type} -- 点击+1</button>
             </div>
         )
     }
