@@ -1,0 +1,28 @@
+{
+  "name": "@ni/ui",
+  "version": "1.0.0",
+  "description": "This is the native ui component based on web component",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "build": "rimraf umd && rimraf lib && cross-env BABEL_ENV=umd rollup -c"
+  },
+  "keywords": [
+    "ui",
+    "web component",
+    "component"
+  ],
+  "author": "NovaNi",
+  "license": "MIT",
+  "buildOptions": {
+    "name": "NiUI",
+    "formats": [
+      "cjs",
+      "esm-bundler",
+      "global"
+    ]
+  },
+  "dependencies": {
+    "@ni/core": "workspace:^1.0.0"
+  }
+}

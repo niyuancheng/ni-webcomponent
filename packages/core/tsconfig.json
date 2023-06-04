@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.settings.json", 
+  "exclude": ["node_modules"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/*.ts", "src/*.tsx"],
+  "compilerOptions": {
+    // 此处rootDir必须设置为 "./src"， 否则会使得类型声明文件的生成出现问题
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "jsx": "react",
+    "jsxFactory": "NiComponent.h",
+    "lib": ["esnext", "dom"],
+    // 配置路径别名
+    "paths": {
+      "vdom": ["./src/vdom/index.js"]
+    }
+  }
+}
