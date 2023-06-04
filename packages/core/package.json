@@ -1,0 +1,25 @@
+{
+  "name": "@ni/core",
+  "version": "1.0.0",
+  "description": "This is the core code for building web component fastly",
+  "main": "./dist/core.esm-bundler.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "generate": "dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts --project tsconfig.json  --no-check"
+  },
+  "keywords": [
+    "core",
+    "WebComponent",
+    "component",
+    "library",
+    "plugin",
+    "typescript",
+    "decorator"
+  ],
+  "author": "NovaNi",
+  "license": "MIT",
+  "buildOptions": {
+    "name": "NiCore",
+    "formats": ["cjs", "esm-bundler", "global"]
+  }
+}
