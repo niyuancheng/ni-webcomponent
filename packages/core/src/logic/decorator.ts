@@ -11,9 +11,10 @@ export interface Component {
 
 // 1.property装饰器--用于标记并且收集需要向外界暴露的属性
 export function property(options: Property = {}) {
+    // target为构造函数的实例上的原型对象
     return function(target: any, key: string) {
         (target.constructor as typeof NiComponent).useProperty(key, options);
-    }
+    } 
 }
 // 2. state装饰器 -- 用于标签那些响应式属性
 export function state() {
