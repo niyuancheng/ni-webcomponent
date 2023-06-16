@@ -108,7 +108,7 @@ class NiComponent extends HTMLElement {
     componentWillUnMount() {}
 
     /**
-   * 控制当前属性变化是否导致组件渲染
+   * 控制当前属性变化是否导致组件渲染，该方法是模仿的react类组件中的形式
    * @param propName 属性名
    * @param oldValue 属性旧值
    * @param newValue 属性新值

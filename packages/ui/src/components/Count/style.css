@@ -1,0 +1,11 @@
+:host .count-container {
+    background-color: bisque;
+}
+
+:host([type="default"]) .count-container {
+    background-color: blue;
+}
+
+:host([type="success"]) .count-container {
+    background-color: aquamarine;
+}

@@ -1,10 +1,12 @@
+
 import { defineComponent, property, state } from "@ni/core"
 import NiComponent from "@ni/core"
-
+import style from "./style.css"
 type ButtonType = "success" | "warn" | "error" | "default";
 // 使用类装饰器
 @defineComponent({
-    tag: "ni-count"
+    tag: "ni-count",
+    style
 })
 class Count extends NiComponent {
     // 将count属性设置为响应式
@@ -23,7 +25,7 @@ class Count extends NiComponent {
 
     render() {
         return (
-            <div>
+            <div class="count-container">
                 <div>{this.count}</div>
                 <button class={this.type} onClick={this.click}>{this.type} -- 点击+1</button>
             </div>

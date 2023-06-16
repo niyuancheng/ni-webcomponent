@@ -1,5 +1,6 @@
 import commonjs from "@rollup/plugin-commonjs";
 import ts from "@rollup/plugin-typescript";
+import postcss from 'rollup-plugin-postcss'
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 import fs from "fs";
@@ -42,6 +43,7 @@ const options = [
             nodeResolve({
                 extensions
             }),
+            postcss(),
             commonjs(),
             babel({
                 babelHelpers: "runtime",
@@ -80,7 +82,8 @@ const options = [
                 babelHelpers: "runtime",
                 exclude: "node_modules/**",
                 extensions,
-            })
+            }),
+            postcss()
         ]
     }
 ]

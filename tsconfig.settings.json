@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2016",
+    "target": "ES2015",
     "moduleResolution": "node",
 
     "emitDeclarationOnly": true /* 只生成声明文件，不生成 js 文件*/,
