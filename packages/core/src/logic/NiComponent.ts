@@ -17,10 +17,10 @@ class NiComponent extends HTMLElement {
     // 生成property装饰器修饰的值属性的描述符{get:xxx,set:xxx},该函数的功能是将指定对象中的普通值属性转为访问器属性
     static generatePropertyDescriptor(key: string, options: Property): (defaultValue: any) => PropertyDescriptor{
         return function(defaultValue: any) {
-            // 返回一个访问器对象,需要注意的是访问器属性的get,set方法都只有在使用xxx.xxx时才会触发，
-            // 而在外部获取自定义组件的示例并且使用setAttribute则不会触发，反而会跳过组件的依赖收集和触发的步骤，因此不建议这样去修改
+            //TODO 返回一个访问器对象,需要注意的是访问器属性的get,set方法都只有在使用xxx.xxx时才会触发，
+            //TODO 而在外部获取自定义组件的示例并且使用setAttribute则不会触发，反而会跳过组件的依赖收集和触发的步骤，因此不建议这样去修改
             return {
-                // 访问器属性get方法的唯一用处是在类的内部获取该属性时能够返回对应的值
+                // 访问器属性get方法的最大用处是在类的内部获取该属性时能够返回对应的值
                 get(this: NiComponent) {
                     let val = this.getAttribute(key);
                     // 首先查看val值是否存在，如果不存在就返回默认的value值：也就是类初始化时变量赋予的值
@@ -154,8 +154,8 @@ class NiComponent extends HTMLElement {
     }
 
     // 触发自定义事件
-    $emit<T>(eventNmae: string, customEventInit?: CustomEventInit<T>) {
-        this.dispatchEvent(new CustomEvent(eventNmae, Object.assign({bubbles: true}, customEventInit ?? {})))
+    $emit<T>(eventName: string, customEventInit?: CustomEventInit<T>) {
+        this.dispatchEvent(new CustomEvent(eventName, Object.assign({bubbles: false}, customEventInit ?? {})))
     }
 }
 

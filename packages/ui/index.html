@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vite + NiComponent</title>
+    <script type="module" src="./src/index.ts"></script>
+</head>
+<body>
+    <h1>欢迎来到Vite项目</h1>
+    <ni-button type="success" border class="ni-button" disabled textOnly>点击+1</ni-button>
+    <ni-input placeholder="demo" border value="默认值"></ni-input>
+    <div class="show"></div>
+    <script>
+        window.onload = function() {
+            const btn = document.getElementsByClassName("ni-button")[0]
+            const ni_input = document.getElementsByTagName("ni-input")[0]
+            const show = document.getElementsByClassName("show")[0]
+            // window.setTimeout(() => {
+            //     btn.type = "";
+            //     btn.disabled = false
+            // },2000)
+            show.innerHTML = ni_input.value;
+
+            ni_input.addEventListener("input", (e) => {
+
+                console.log(e)
+                ni_input.value = "Test";
+                show.innerHTML = ni_input.value;
+
+            })
+        }
+
+    </script>
+</body>
+</html>
