@@ -51,16 +51,14 @@ class Button extends NiComponent {
         observed: true,
         type: 'string'
     })
-    color: Props["color"];
+    color: Props["color"] = null;
     handleClick = (e: Event) => {
         // 首先禁止原生click事件的冒泡，而是使用自定义事件去进行冒泡，这样更方便我们的参数传递!!
         e.stopPropagation();
-        this.$emit("click", e)
-    }
-
-    componentDidMount(): void {
-        console.log("组件已经挂载到页面上")
-        console.log(this.color, this.shadowRoot);
+        this.$emit("click", {
+            cancelable: true,
+            bubbles: true
+        })
     }
 
     // 是否应该进行更新

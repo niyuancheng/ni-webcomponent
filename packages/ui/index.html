@@ -7,28 +7,28 @@
     <script type="module" src="./src/index.ts"></script>
 </head>
 <body>
-    <h1>欢迎来到Vite项目</h1>
-    <ni-button type="success" border class="ni-button" disabled textOnly>点击+1</ni-button>
-    <ni-input placeholder="demo" border value="默认值"></ni-input>
+    <h1>欢迎来到Vite + WebComponent项目</h1>
+    <!-- <ni-button type="success" border>点击+1</ni-button> -->
+    <ni-input placeholder="测试"></ni-input>
     <div class="show"></div>
     <script>
         window.onload = function() {
-            const btn = document.getElementsByClassName("ni-button")[0]
-            const ni_input = document.getElementsByTagName("ni-input")[0]
-            const show = document.getElementsByClassName("show")[0]
-            // window.setTimeout(() => {
-            //     btn.type = "";
-            //     btn.disabled = false
-            // },2000)
-            show.innerHTML = ni_input.value;
+            const ni_btn = document.getElementsByTagName("ni-button")[0]
+            console.log("@@@",ni_btn.border)
+            // const ni_input = document.getElementsByTagName("ni-input")[0]
+            // const show = document.getElementsByClassName("show")[0]
+            // show.innerHTML = ni_input.value;
 
-            ni_input.addEventListener("input", (e) => {
+            // ni_input.addEventListener("input", (e) => {
+            //     console.log(e.target.value)
+            //     show.innerHTML = e.target.value
+            // })
 
-                console.log(e)
-                ni_input.value = "Test";
-                show.innerHTML = ni_input.value;
+            // ni_btn.addEventListener("click", (e) => {
+            //     console.log("HTML中按钮被点击了", e.target)
+            // })
 
-            })
+            // console.dir(ni_input.getAttribute("autosize") === "")
         }
 
     </script>

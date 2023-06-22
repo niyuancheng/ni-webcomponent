@@ -19,12 +19,14 @@ importers:
       '@rollup/plugin-node-resolve': ^15.0.2
       '@rollup/plugin-terser': ^0.4.3
       '@rollup/plugin-typescript': ^11.1.1
+      '@types/lodash': ^4.14.195
       '@types/node': ^20.2.1
       chalk: ^5.2.0
       cross-env: ^7.0.3
       dts-bundle-generator: ^8.0.1
       execa: 5.1.1
       inquirer: ^9.2.5
+      lodash: ^4.17.21
       minimist: ^1.2.8
       npm-run-all: ^4.1.5
       postcss: ^8.4.24
@@ -34,6 +36,9 @@ importers:
       rollup-plugin-typescript2: ^0.34.1
       tslib: ^2.5.2
       typescript: ^5.0.4
+    dependencies:
+      '@types/lodash': 4.14.195
+      lodash: 4.17.21
     devDependencies:
       '@babel/cli': 7.21.5_@babel+core@7.21.8
       '@babel/core': 7.21.8
@@ -1898,6 +1903,10 @@ packages:
     resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
     dev: true
 
+  /@types/lodash/4.14.195:
+    resolution: {integrity: sha512-Hwx9EUgdwf2GLarOjQp5ZH8ZmblzcbTBC2wtQWNKARBSxM9ezRIAUpeDTgoQRAFB0+8CNWXVA9+MaSOzOF3nPg==}
+    dev: false
+
   /@types/node/20.2.1:
     resolution: {integrity: sha512-DqJociPbZP1lbZ5SQPk4oag6W7AyaGMO6gSfRwq3PWl4PXTwJpRQJhDq4W0kzrg3w6tJ1SwlvGZ5uKFHY13LIg==}
     dev: true
@@ -3262,7 +3271,6 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /log-symbols/4.1.0:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}

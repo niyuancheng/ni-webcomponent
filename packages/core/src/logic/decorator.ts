@@ -11,7 +11,7 @@ export interface Component {
 
 // 1.property装饰器--用于标记并且收集需要向外界暴露的属性
 export function property(options: Property = {}) {
-    // target为构造函数的实例上的原型对象
+    // target为构造函数的实例的原型对象
     return function(target: any, key: string) {
         (target.constructor as typeof NiComponent).useProperty(key, options);
     } 
@@ -49,7 +49,7 @@ export function defineComponent(options: Component) {
 
                 stateStore.forEach((cons, key, descriptorFunc) => {
                     if(cons === target) {
-                        //TODO 将原来对象上的所有用property装饰器和state装饰器修饰的值属性都转为访问器属性
+                        //TODO 将原来对象上的所有用property装饰器和state装饰器修饰的值属性都转为访问器属性（此处为重点）
                         Object.defineProperty(this, key, descriptorFunc(this[key]));
                     }
                 })

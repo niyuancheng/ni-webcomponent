@@ -12,6 +12,7 @@
     // 配置路径别名
     "paths": {
       "vdom": ["./src/vdom/index.js"]
-    }
+    },
+    "allowSyntheticDefaultImports": true
   }
 }
