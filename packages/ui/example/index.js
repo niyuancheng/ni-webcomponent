@@ -1,8 +1,10 @@
-import { Count } from "../lib/index.js";
-
+import "../lib/index.js";
 window.onload = () => {
-  window.setTimeout(() => {
-    // document.getElementsByTagName("ni-count")[0].type = "default";
-  }, 2000);
+  setTimeout(() => {
+    const niBtn = document.getElementsByTagName("ni-button")[0]
+    niBtn.addEventListener("click", (e) => {
+      alert("警告！！！")
+    })
+    // console.log(document.getElementsByTagName("ni-button")[0].disabled)
+  }, 2000)
 };
-console.log(Count);

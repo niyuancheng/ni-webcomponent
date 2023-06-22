@@ -1,0 +1,76 @@
+/* 在此处设置shadow dom下的根节点的所有默认样式 */
+:host .btn-container{
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    height: var(--button-height, 32px);
+    min-width: var(--button-min-width, 64px);
+    line-height: var(--button-height, 32px);
+    text-align: center;
+    padding-left: var(--button-hspacing, 12px);
+    padding-right: var(--button-hspacing, 12px);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    outline: none;
+    background-color: var(--button-default-backgroundColor, #eee);
+
+    --success-color: green;
+    --primary-color: skyblue;
+    --warning-color: orange;
+    --error-color: red;
+    --default-color: #eee;
+}
+
+:host([type="success"]) .btn-container{
+    background-color: var(--success-color);
+    /* color: green; */
+}
+
+:host([type="warning"]) .btn-container{
+    background-color: var(--warning-color);
+    /* color: orange; */
+}
+
+:host([type="error"]) .btn-container{
+    background-color: var(--error-color);
+    /* color: red; */
+}
+
+:host([type="primary"]) .btn-container{
+    background-color: var(--primary-color);
+    /* color: skyblue; */
+}
+
+:host([textOnly]) .btn-container {
+    background-color: var(--default-color);
+}
+
+:host([textOnly][type="success"]) .btn-container {
+    color: var(--success-color);
+}
+
+:host([textOnly][type="primary"]) .btn-container {
+    color: var(--primary-color);
+}
+
+:host([textOnly][type="warning"]) .btn-container {
+    color: var(--warning-color);
+}
+
+:host([textOnly][type="error"]) .btn-container {
+    color: var(--error-color);
+}
+
+:host([border]) .btn-container{
+    border-radius: var(--button-border-radius, 16px);
+}
+
+:host([disabled]) .btn-container{
+    cursor: not-allowed;
+    opacity: var(--button-disabled-opacity, 0.5);
+}
+
+:host([dashed]) .btn-container{
+    border: 1px dashed transparent
+}

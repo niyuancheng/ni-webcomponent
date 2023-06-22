@@ -1,3 +1,4 @@
 import Count from "./components/Count";
-
-export { Count }
+import Button from "./components/Button";
+import Input from "./components/Input";
+export { Count, Button, Input }

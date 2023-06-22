@@ -5,7 +5,10 @@
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
-    "build": "rimraf umd && rimraf lib && cross-env BABEL_ENV=umd rollup -c"
+    "build:rollup": "rimraf umd && rimraf lib && cross-env BABEL_ENV=umd rollup -c",
+    "dev": "vite",
+    "build:vite": "vite build",
+    "preview": "vite preview"
   },
   "keywords": [
     "ui",
@@ -24,5 +27,8 @@
   },
   "dependencies": {
     "@ni/core": "workspace:^1.0.0"
+  },
+  "devDependencies": {
+    "vite": "^4.3.9"
   }
 }

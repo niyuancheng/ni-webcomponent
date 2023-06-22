@@ -2,6 +2,7 @@ import { h, Fragment, render, hydrate, createRef } from "../vdom";
 import { KeyMap } from "./KeyMap"
 import type { Property } from "./decorator";
 import { convertStringToTaregt, convertTargetToString } from "./utils";
+import cloneDeep from "lodash/cloneDeep"
 // 保存需要向外暴露出的属性
 const propertyStore = new KeyMap<typeof NiComponent, string, Property>();
 // 保存仅限内部使用的响应式属性（改变该属性可以触发UI的更新）
@@ -17,14 +18,14 @@ class NiComponent extends HTMLElement {
     // 生成property装饰器修饰的值属性的描述符{get:xxx,set:xxx},该函数的功能是将指定对象中的普通值属性转为访问器属性
     static generatePropertyDescriptor(key: string, options: Property): (defaultValue: any) => PropertyDescriptor{
         return function(defaultValue: any) {
-            // 返回一个访问器对象,需要注意的是访问器属性的get,set方法都只有在使用xxx.xxx时才会触发，
-            // 而在外部获取自定义组件的示例并且使用setAttribute则不会触发，反而会跳过组件的依赖收集和触发的步骤，因此不建议这样去修改
+            //TODO 返回一个访问器对象,需要注意的是访问器属性的get,set方法都只有在使用xxx.xxx时才会触发，
+            //TODO 而在外部获取自定义组件的示例并且使用setAttribute则不会触发，反而会跳过组件的依赖收集和依赖触发的步骤，因此不建议这样去修改
             return {
-                // 访问器属性get方法的唯一用处是在类的内部获取该属性时能够返回对应的值
+                // 访问器属性get方法的最大用处是在类的内部获取该属性时能够返回对应的值
                 get(this: NiComponent) {
                     let val = this.getAttribute(key);
                     // 首先查看val值是否存在，如果不存在就返回默认的value值：也就是类初始化时变量赋予的值
-                    
+                    console.log(key, options)
                     if(val === null) {
                         return defaultValue;
                     } else {
@@ -57,7 +58,7 @@ class NiComponent extends HTMLElement {
                 enumerable: true,
                 configurable: true
             }
-        }
+        } 
     }
 
     // 生成状态描述符，用于实现组件的响应式
@@ -80,7 +81,8 @@ class NiComponent extends HTMLElement {
 
     // 用于保存挂载了property装饰器的属性
     static useProperty(name: string, options: Property) {
-        options = Object.assign(options, this.defaultOptions);
+        options = Object.assign(cloneDeep(this.defaultOptions), options);
+        // console.log(name, options)
         propertyStore.set(this, name, options);
         stateStore.set(this, name, this.generatePropertyDescriptor(name, options));
     }
@@ -112,7 +114,7 @@ class NiComponent extends HTMLElement {
    * @param propName 属性名
    * @param oldValue 属性旧值
    * @param newValue 属性新值
-   * @returns boolean
+   * @returns {boolean}
    */
     shouldComponentUpdate(propName: string, oldValue: string, newValue: string) {
         return oldValue !== newValue;
@@ -120,7 +122,7 @@ class NiComponent extends HTMLElement {
 
     componentDidUpdate(propName: string, oldValue: string, newValue: string) {}
 
-    // 当组件第一次挂载到页面上的时候触发该函数,在内部需要将UI视图添加到影子DOM内
+    //TODO 当组件第一次挂载到页面上的时候触发该函数,在内部需要将UI视图添加到影子DOM内(组件的原生生命周期)
     connectedCallback() {
         /**
          * 初始值重写后首次渲染
@@ -131,7 +133,7 @@ class NiComponent extends HTMLElement {
         } 
     }
 
-    //TODO 当暴露出去的属性发生变化时触发该回调函数，此时需要重新渲染视图
+    //TODO 当暴露出去的属性发生变化时触发该回调函数，此时需要重新渲染视图(组件的原生生命周期)
     attributeChangedCallback(name: string, oldValue: string, value: string) {
         // const newVnode = this.render();
 
@@ -144,7 +146,7 @@ class NiComponent extends HTMLElement {
         }
     }
     
-    //TODO 当组件从视图上卸载时触发该方法
+    //TODO 当组件从视图上卸载时触发该方法(组件的原生生命周期)
     disconnectedCallback() {
         if(this.componentWillUnMount && typeof this.componentWillUnMount === "function") {
             this.componentWillUnMount();
@@ -154,8 +156,8 @@ class NiComponent extends HTMLElement {
     }
 
     // 触发自定义事件
-    $emit<T>(eventNmae: string, customEventInit?: CustomEventInit<T>) {
-        this.dispatchEvent(new CustomEvent(eventNmae, Object.assign({bubbles: true}, customEventInit ?? {})))
+    $emit<T>(eventName: string, customEventInit?: CustomEventInit<T>) {
+        this.dispatchEvent(new CustomEvent(eventName, Object.assign({bubbles: false}, customEventInit ?? {})))
     }
 }
 

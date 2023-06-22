@@ -9,6 +9,7 @@
     "jsx": "react",
     "jsxFactory": "NiComponent.h",
     // "jsxFragmentFactory": .Fragment",
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    "types": ["vite/client"]
   }
 }
